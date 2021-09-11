@@ -1,0 +1,14 @@
+include includes/headers.pug
+
+.container 
+    .row.row-cols-2
+        .col
+            a(href='/pages/logout') Logout
+    .row 
+        .col   
+            p.mt-4 Hello #{user.username} !
+            if role == "admin" 
+                p is admin
+            else 
+                p is user
+

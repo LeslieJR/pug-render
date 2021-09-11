@@ -1,0 +1,20 @@
+include includes/headers.pug
+.container
+    .row 
+        .col-md-6.offset-md-3
+            .card.mt-4
+                .card-body
+                    h5.card-title Sign Up
+                    form(action="/api/register", method="post")
+                        .mb-3
+                        label.form-label(for='username') Username
+                        input#username.form-control(type='text' name='username') 
+                        .mb-3
+                        label.form-label(for='password1') Password
+                        input#password1.form-control(type='password' name='password1')
+                        label.form-label(for='password2') Repeat Password
+                        input#password2.form-control(type='password' name='password2')
+                        button.btn.btn-primary.mt-2(type='submit') Submit
+    .row
+        .col.text-center
+           a(href='/pages/sign-in') Sign in

@@ -1,0 +1,18 @@
+include includes/headers.pug
+.container
+    .row 
+        .col-md-6.offset-md-3
+            .card.mt-4
+                .card-body
+                    h5.card-title Sign In
+                    form(action="/api/login", method="post")
+                        .mb-3
+                        label.form-label(for='username') Username
+                        input#username.form-control(type='text' name='username') 
+                        .mb-3
+                        label.form-label(for='password') Password
+                        input#password.form-control(type='password' name='password')
+                        button.btn.btn-primary.mt-2(type='submit') Submit
+    .row
+        .col.text-center
+           a(href='/pages/sign-up') Sign up
