@@ -17,4 +17,4 @@ include includes/headers.pug
                                         p.card-title= user.username
                                     .col.col-md-2
                                         form(action=`/api/remove-user/${user._id}`, method="delete") 
-                                            button.btn.btn-danger X 
+                                            button.btn.btn-danger(type="submit") X 
