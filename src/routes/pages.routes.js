@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const router = Router();
-
+const models = require('../models');
 
 //Render Pages
 router.get('/sign-in', (req, res) => {
@@ -22,19 +22,22 @@ router.get('/sign-up', (req, res) => {
     res.render('sign_up.pug', {error})
 })
 
-router.get('/users-page', (req, res) => {
+router.get('/users-page', async (req, res) => {
     const user = req.session.user;
 
     const error = req.session.errorMessage;
 
     const isAdmin = user.admin;
-    var role
+    var role;
+    var users;
     if(isAdmin){
         role = 'admin'
+        //todos los usuarios que no tengan rol de admin:
+        users = await models.user.find({ admin: {$ne: true}})
     }else{
         role = 'user'
     }
-    res.render('users_page.pug', {role, user, error})
+    res.render('users_page.pug', {role, user, error, users})
 })
 
 

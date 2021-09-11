@@ -8,7 +8,13 @@ include includes/headers.pug
         .col   
             p.mt-4 Hello #{user.username} !
             if role == "admin" 
-                p is admin
-            else 
-                p is user
-
+                each user, index in users
+                    .col-3
+                        .card
+                            .card-body
+                                .row
+                                    .col.col-md-10
+                                        p.card-title= user.username
+                                    .col.col-md-2
+                                        form(action=`/api/remove-user/${user._id}`, method="delete") 
+                                            button.btn.btn-danger X 
