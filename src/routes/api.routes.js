@@ -6,14 +6,16 @@ router.post('/register', async (req, res) => {
     const {username, password1, password2} = req.body;
     //para mirar si ya hay un usuario con ese username
     const userExist = await models.user.findOne({username})
-    console.log(userExist, password1 ,password2)
+    
     if(userExist){
+        req.session.errorMessage = "username already in use"
         return res.redirect('/pages/sign-up')
     }
     if(password1!==password2){
+        req.session.errorMessage = "passwords don't match"
         return res.redirect('/pages/sign-up')
     }
-    
+
     const hash = await models.user.encrypt(password2);
     const newUser = new models.user({username, password: hash});
  
@@ -28,11 +30,13 @@ router.post('/login', async (req, res) => {
     const userExist = await models.user.findOne({username})
    
     if(!userExist){
+        req.session.errorMessage = "This username doesn't exist"
         res.redirect('/pages/sign-in');
     }
 
     const isCorrect = await models.user.compare(password, userExist.password);
     if(!isCorrect){
+        req.session.errorMessage ="email or password incorrect"
         res.redirect('/pages/sign-in');
     }
 

@@ -5,6 +5,8 @@ include includes/headers.pug
             .card.mt-4
                 .card-body
                     h5.card-title Sign In
+                    if error 
+                        alert.alert-danger #{error} 
                     form(action="/api/login", method="post")
                         .mb-3
                         label.form-label(for='username') Username
