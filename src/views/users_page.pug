@@ -16,5 +16,18 @@ include includes/headers.pug
                                     .col.col-md-10
                                         p.card-title= user.username
                                     .col.col-md-2
-                                        form(action=`/api/remove-user/${user._id}`, method="delete") 
-                                            button.btn.btn-danger(type="submit") X 
+                                        button.btn.btn-danger(onclick="toDelete(" + JSON.stringify(user) + ")") X
+                                        //-form(action=`/api/remove/${user._id}`, method="post") 
+                                        //-button.btn.btn-danger(type="submit") X 
+
+script. 
+    async function toDelete(user){
+    console.log('inside toDelete')
+
+    console.log(user._id)
+    await fetch(`http://localhost:4040/api/remove/${user._id}`, {
+        method: 'delete'
+        })
+    }
+
+

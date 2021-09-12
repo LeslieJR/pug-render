@@ -3,7 +3,6 @@ const path = require('path')
 const server = express();
 const routes = require('./routes')
 const session = require('express-session');
-const router = require('./routes/pages.routes');
 
 //Settings
 server.set('port', 4040);

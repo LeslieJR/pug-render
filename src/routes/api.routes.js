@@ -54,13 +54,11 @@ router.get("/logout", (req, res) => {
   });
 });
 
-router.delete("/remove-user/:id", async (req, res) => {
+router.delete("/remove/:id", async (req, res) => {
   const { id } = req.params;
 
-  await models.user.remove({_id:id});
-  //const users = await models.user.find()
-  //res.json({users})
-  res.redirect("/pages/users-page");
+  await models.user.deleteOne({ _id: id })
+  res.redirect("/pages/users-page"); //esta línea no funciona  
 });
 
 module.exports = router;
