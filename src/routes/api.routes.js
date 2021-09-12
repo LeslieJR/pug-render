@@ -58,7 +58,8 @@ router.delete("/remove/:id", async (req, res) => {
   const { id } = req.params;
 
   await models.user.deleteOne({ _id: id })
-  res.redirect("/pages/users-page"); //esta línea no funciona  
+  
+  //return res.redirect("/pages/users-page");
 });
 
 module.exports = router;
