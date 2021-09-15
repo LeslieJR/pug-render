@@ -60,7 +60,6 @@ router.delete("/remove/:id", async (req, res) => {
   await models.user.deleteOne({ _id: id })
   
   res.json({message: 'user deleted'})
-  //return res.redirect("/pages/users-page");
 });
 
 module.exports = router;
